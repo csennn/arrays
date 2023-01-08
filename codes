@@ -1,0 +1,41 @@
+import java.util.ArrayList;
+import java.util.Scanner;
+
+public class Solution {
+
+	public static void main(String[] args) {
+
+		try (Scanner scan = new Scanner(System.in)) {
+			int linesNumber = scan.nextInt();
+			ArrayList<ArrayList<Integer>> lists = new ArrayList<>();
+			for (int i = 0; i < linesNumber; i++) {
+				int n = scan.nextInt();
+				ArrayList<Integer> currentList = new ArrayList<>();
+				for (int j = 0; j < n; j++) {
+					int element = scan.nextInt();
+					currentList.add(element);
+				}
+				lists.add(currentList);
+			}
+
+			int queriesNumber = scan.nextInt();
+			ArrayList<int[]> allQueries = new ArrayList<>();
+			for (int i = 0; i < queriesNumber; i++) {
+				int element1 = scan.nextInt();
+				int element2 = scan.nextInt();
+				int queries[] = { element1, element2 };
+				allQueries.add(queries);
+			}
+
+			for (int i = 0; i < queriesNumber; i++) {
+				try {
+					int firstelement = allQueries.get(i)[0];
+					int secondelement = allQueries.get(i)[1];
+					System.out.println(lists.get(firstelement - 1).get(secondelement - 1));
+				} catch (IndexOutOfBoundsException e) {
+					System.out.println("ERROR!");
+				}
+			}
+		}
+	}
+}
